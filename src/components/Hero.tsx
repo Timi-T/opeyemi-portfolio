@@ -22,37 +22,28 @@ const Hero = () => {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Simplified Background Elements */}
       <div className="absolute inset-0">
-        {[...Array(3)].map((_, i) => (
+        {[...Array(2)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-xl animate-pulse"
+            className="absolute bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-2xl animate-pulse"
             style={{
-              width: `${Math.random() * 150 + 80}px`,
-              height: `${Math.random() * 150 + 80}px`,
+              width: `${Math.random() * 100 + 60}px`,
+              height: `${Math.random() * 100 + 60}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
-              animationDelay: `${i * 1}s`,
-              animationDuration: `${Math.random() * 4 + 3}s`,
+              transform: `translate(${mousePosition.x * 0.005}px, ${mousePosition.y * 0.005}px)`,
+              animationDelay: `${i * 2}s`,
+              animationDuration: `${Math.random() * 6 + 4}s`,
             }}
           />
         ))}
       </div>
 
-      {/* Subtle 3D Elements */}
+      {/* Floating elements for more life */}
       <div className="absolute inset-0 pointer-events-none">
-        <div
-          className="absolute top-1/4 left-1/4 w-16 h-16 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-lg opacity-20"
-          style={{
-            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.05}deg) rotateY(${mousePosition.x * 0.05}deg)`,
-          }}
-        />
-        <div
-          className="absolute top-3/4 right-1/4 w-12 h-12 bg-gradient-to-r from-purple-400/10 to-pink-500/10 rounded-full opacity-25"
-          style={{
-            transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.08}deg) rotateY(${-mousePosition.x * 0.08}deg)`,
-          }}
-        />
+        <div className="absolute top-20 left-20 w-8 h-8 bg-cyan-400/20 rounded-full animate-bounce" style={{ animationDelay: "1s", animationDuration: "3s" }}></div>
+        <div className="absolute top-40 right-32 w-6 h-6 bg-purple-400/20 rounded-full animate-bounce" style={{ animationDelay: "2s", animationDuration: "4s" }}></div>
+        <div className="absolute bottom-32 left-1/3 w-10 h-10 bg-blue-400/20 rounded-full animate-bounce" style={{ animationDelay: "0.5s", animationDuration: "3.5s" }}></div>
       </div>
 
       {/* Main Content */}
@@ -63,51 +54,59 @@ const Hero = () => {
             transform: `perspective(1000px) rotateX(${mousePosition.y * 0.02}deg) rotateY(${mousePosition.x * 0.02}deg)`,
           }}
         >
-          {/* Profile Picture with Animated Gradient Border */}
+          {/* Profile Picture with Enhanced Animated Gradient Border */}
           <div className="mb-8 flex justify-center animate-fade-in">
-            <div className="relative">
-              {/* Animated gradient border */}
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 via-cyan-400 to-purple-500 animate-spin p-1" style={{ animationDuration: '3s' }}>
-                <div className="w-full h-full rounded-full bg-gray-900"></div>
+            <div className="relative p-1">
+              {/* Enhanced animated gradient border */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 via-cyan-400 via-blue-500 to-purple-500 animate-spin bg-[length:400%_400%]" 
+                   style={{ 
+                     animationDuration: '4s',
+                     background: 'linear-gradient(45deg, #8b5cf6, #ec4899, #06b6d4, #3b82f6, #8b5cf6, #ec4899)',
+                     backgroundSize: '400% 400%'
+                   }}>
               </div>
-              {/* Profile picture */}
-              <Avatar className="relative w-32 h-32 ring-2 ring-transparent">
-                <AvatarImage 
-                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
-                  alt="Profile"
-                  className="object-cover"
-                />
-                <AvatarFallback className="bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl font-bold">
-                  JD
-                </AvatarFallback>
-              </Avatar>
+              {/* Inner container for profile picture */}
+              <div className="relative bg-gray-900 rounded-full p-1">
+                <Avatar className="w-32 h-32 ring-4 ring-white/10">
+                  <AvatarImage 
+                    src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
+                    alt="Profile"
+                    className="object-cover"
+                  />
+                  <AvatarFallback className="bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl font-bold">
+                    AL
+                  </AvatarFallback>
+                </Avatar>
+              </div>
             </div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-fade-in">
+          <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-fade-in hover:scale-105 transition-transform duration-300">
             Hey, I'm Alex! 👋
           </h1>
-          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-200 animate-fade-in" style={{ animationDelay: "0.1s" }}>
+          <h2 className="text-3xl md:text-4xl font-semibold mb-6 text-gray-200 animate-fade-in hover:text-cyan-300 transition-colors duration-300" style={{ animationDelay: "0.1s" }}>
             Frontend Engineer
           </h2>
           <p className="text-xl md:text-2xl mb-8 text-gray-300 animate-fade-in leading-relaxed" style={{ animationDelay: "0.2s" }}>
             I turn coffee into beautiful, interactive web experiences ☕✨<br />
-            <span className="text-lg text-gray-400">3 years of building digital magic, one pixel at a time</span>
+            <span className="text-lg text-gray-400 hover:text-purple-300 transition-colors duration-300">3 years of building digital magic, one pixel at a time</span>
           </p>
           <div className="space-x-4 animate-fade-in" style={{ animationDelay: "0.4s" }}>
-            <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-purple-500/25">
+            <button className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:scale-110 hover:shadow-2xl hover:shadow-purple-500/50 transform transition-all duration-300">
               Check Out My Work 🚀
             </button>
-            <button className="px-8 py-3 border-2 border-purple-500 rounded-full font-semibold hover:bg-purple-500/20 transform transition-all duration-300">
+            <button className="px-8 py-3 border-2 border-purple-500 rounded-full font-semibold hover:bg-purple-500/30 hover:scale-105 hover:border-cyan-400 transform transition-all duration-300">
               Read My Stories 📖
             </button>
           </div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Enhanced Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <ChevronDown className="w-8 h-8 text-white/70" />
+        <div className="bg-gradient-to-r from-purple-500 to-cyan-500 p-2 rounded-full">
+          <ChevronDown className="w-6 h-6 text-white" />
+        </div>
       </div>
     </section>
   );
