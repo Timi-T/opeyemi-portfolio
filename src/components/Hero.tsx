@@ -20,44 +20,37 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background Elements */}
+      {/* Simplified Background Elements */}
       <div className="absolute inset-0">
-        {[...Array(6)].map((_, i) => (
+        {[...Array(3)].map((_, i) => (
           <div
             key={i}
-            className="absolute bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-xl animate-pulse"
+            className="absolute bg-gradient-to-r from-purple-500/5 to-blue-500/5 rounded-full blur-xl animate-pulse"
             style={{
-              width: `${Math.random() * 200 + 100}px`,
-              height: `${Math.random() * 200 + 100}px`,
+              width: `${Math.random() * 150 + 80}px`,
+              height: `${Math.random() * 150 + 80}px`,
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              transform: `translate(${mousePosition.x * 0.02}px, ${mousePosition.y * 0.02}px)`,
-              animationDelay: `${i * 0.5}s`,
-              animationDuration: `${Math.random() * 3 + 2}s`,
+              transform: `translate(${mousePosition.x * 0.01}px, ${mousePosition.y * 0.01}px)`,
+              animationDelay: `${i * 1}s`,
+              animationDuration: `${Math.random() * 4 + 3}s`,
             }}
           />
         ))}
       </div>
 
-      {/* 3D Floating Elements */}
+      {/* Subtle 3D Elements */}
       <div className="absolute inset-0 pointer-events-none">
         <div
-          className="absolute top-1/4 left-1/4 w-20 h-20 bg-gradient-to-r from-cyan-400/20 to-blue-500/20 rounded-lg opacity-30 animate-bounce"
+          className="absolute top-1/4 left-1/4 w-16 h-16 bg-gradient-to-r from-cyan-400/10 to-blue-500/10 rounded-lg opacity-20"
           style={{
-            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.1}deg) rotateY(${mousePosition.x * 0.1}deg)`,
-            animationDelay: "0s",
+            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.05}deg) rotateY(${mousePosition.x * 0.05}deg)`,
           }}
         />
         <div
-          className="absolute top-3/4 right-1/4 w-16 h-16 bg-gradient-to-r from-purple-400/20 to-pink-500/20 rounded-full opacity-40"
+          className="absolute top-3/4 right-1/4 w-12 h-12 bg-gradient-to-r from-purple-400/10 to-pink-500/10 rounded-full opacity-25"
           style={{
-            transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.15}deg) rotateY(${-mousePosition.x * 0.15}deg) translateZ(50px)`,
-          }}
-        />
-        <div
-          className="absolute top-1/2 right-1/3 w-12 h-12 bg-gradient-to-r from-yellow-400/20 to-orange-500/20 transform rotate-45 opacity-35"
-          style={{
-            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.2}deg) rotateY(${mousePosition.x * 0.2}deg) rotate(45deg)`,
+            transform: `perspective(1000px) rotateX(${-mousePosition.y * 0.08}deg) rotateY(${-mousePosition.x * 0.08}deg)`,
           }}
         />
       </div>
@@ -67,21 +60,28 @@ const Hero = () => {
         <div
           className="transform transition-transform duration-300"
           style={{
-            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.05}deg) rotateY(${mousePosition.x * 0.05}deg)`,
+            transform: `perspective(1000px) rotateX(${mousePosition.y * 0.02}deg) rotateY(${mousePosition.x * 0.02}deg)`,
           }}
         >
-          {/* Profile Picture */}
+          {/* Profile Picture with Animated Gradient Border */}
           <div className="mb-8 flex justify-center animate-fade-in">
-            <Avatar className="w-32 h-32 ring-4 ring-purple-500/50 ring-offset-4 ring-offset-transparent">
-              <AvatarImage 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
-                alt="Profile"
-                className="object-cover"
-              />
-              <AvatarFallback className="bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl font-bold">
-                JD
-              </AvatarFallback>
-            </Avatar>
+            <div className="relative">
+              {/* Animated gradient border */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-blue-500 via-cyan-400 to-purple-500 animate-spin p-1" style={{ animationDuration: '3s' }}>
+                <div className="w-full h-full rounded-full bg-gray-900"></div>
+              </div>
+              {/* Profile picture */}
+              <Avatar className="relative w-32 h-32 ring-2 ring-transparent">
+                <AvatarImage 
+                  src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=400&fit=crop&crop=face" 
+                  alt="Profile"
+                  className="object-cover"
+                />
+                <AvatarFallback className="bg-gradient-to-r from-purple-500 to-blue-500 text-white text-2xl font-bold">
+                  JD
+                </AvatarFallback>
+              </Avatar>
+            </div>
           </div>
 
           <h1 className="text-5xl md:text-7xl font-bold mb-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent animate-fade-in">
