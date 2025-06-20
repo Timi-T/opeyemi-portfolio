@@ -19,7 +19,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-slate-800/80 backdrop-blur-md shadow-lg fixed top-0 left-0 right-0 z-50">
+    <header className="bg-slate-800 shadow-lg">
       <div className="w-1/2 mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}

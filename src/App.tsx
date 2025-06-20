@@ -14,7 +14,6 @@ import StatsPage from "./pages/StatsPage";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
-import Scene3D from "./components/Scene3D";
 
 const queryClient = new QueryClient();
 
@@ -24,21 +23,19 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Scene3D>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/projects" element={<ProjectsPage />} />
-            <Route path="/blogs" element={<BlogsPage />} />
-            <Route path="/blog/:id" element={<BlogPost />} />
-            <Route path="/cv" element={<CVPage />} />
-            <Route path="/stats" element={<StatsPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Scene3D>
+        <Header />
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blog/:id" element={<BlogPost />} />
+          <Route path="/cv" element={<CVPage />} />
+          <Route path="/stats" element={<StatsPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
