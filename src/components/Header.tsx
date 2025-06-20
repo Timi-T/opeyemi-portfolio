@@ -19,8 +19,8 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
-      <div className="max-w-4xl mx-auto px-6 py-4">
+    <header className="bg-slate-800 shadow-lg">
+      <div className="w-1/2 mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
           <Link 
