@@ -1,6 +1,6 @@
 
 import { Canvas } from '@react-three/fiber';
-import { Scroll, ScrollControls, Environment, Float, Text3D, OrbitControls } from '@react-three/drei';
+import { Scroll, ScrollControls, Float, Text3D, OrbitControls } from '@react-three/drei';
 import { Suspense, useRef } from 'react';
 import * as THREE from 'three';
 
@@ -33,10 +33,12 @@ const FloatingShape = ({ position, color, geometry }: { position: [number, numbe
 const Scene3DContent = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      {/* Ambient lighting */}
-      <ambientLight intensity={0.3} />
-      <directionalLight position={[10, 10, 5]} intensity={1} />
+      {/* Enhanced lighting setup instead of Environment */}
+      <ambientLight intensity={0.4} color="#404040" />
+      <directionalLight position={[10, 10, 5]} intensity={1} color="#ffffff" />
+      <directionalLight position={[-10, -10, -5]} intensity={0.5} color="#8b5cf6" />
       <pointLight position={[-10, -10, -10]} intensity={0.5} color="#8b5cf6" />
+      <pointLight position={[10, 10, 10]} intensity={0.3} color="#06b6d4" />
       
       {/* Floating 3D elements */}
       <FloatingShape position={[-8, 5, -3]} color="#8b5cf6" geometry="box" />
@@ -45,9 +47,6 @@ const Scene3DContent = ({ children }: { children: React.ReactNode }) => {
       <FloatingShape position={[6, 8, -4]} color="#10b981" geometry="box" />
       <FloatingShape position={[0, 12, -6]} color="#f59e0b" geometry="sphere" />
       <FloatingShape position={[-10, 0, -8]} color="#ef4444" geometry="torus" />
-      
-      {/* Environment for reflections */}
-      <Environment preset="night" />
       
       {/* Scroll controls for 3D navigation */}
       <ScrollControls pages={5} damping={0.1}>
