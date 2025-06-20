@@ -3,7 +3,7 @@ import Blog from "@/components/Blog";
 
 const BlogsPage = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">

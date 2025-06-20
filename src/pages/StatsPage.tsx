@@ -1,4 +1,6 @@
 
+import { Github, Star, GitFork, Users } from "lucide-react";
+
 const StatsPage = () => {
   const stats = [
     { label: "Projects Completed", value: "25+", color: "from-purple-500 to-pink-500" },
@@ -7,8 +9,15 @@ const StatsPage = () => {
     { label: "Coffee Cups", value: "∞", color: "from-orange-500 to-red-500" },
   ];
 
+  const githubStats = [
+    { label: "Public Repos", value: "42", icon: Github, color: "from-gray-600 to-gray-800" },
+    { label: "Total Stars", value: "156", icon: Star, color: "from-yellow-500 to-orange-500" },
+    { label: "Forks", value: "23", icon: GitFork, color: "from-blue-500 to-indigo-500" },
+    { label: "Followers", value: "89", icon: Users, color: "from-green-500 to-emerald-500" },
+  ];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black pt-4">
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in">
@@ -17,6 +26,7 @@ const StatsPage = () => {
           <div className="w-24 h-1 bg-gradient-to-r from-purple-500 to-blue-500 mx-auto"></div>
         </div>
 
+        {/* General Stats */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
           {stats.map((stat, index) => (
             <div
@@ -32,6 +42,35 @@ const StatsPage = () => {
               </p>
             </div>
           ))}
+        </div>
+
+        {/* GitHub Stats */}
+        <div className="mb-16">
+          <h2 className="text-3xl font-bold text-white mb-8 text-center bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent">
+            GitHub Stats
+          </h2>
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {githubStats.map((stat, index) => {
+              const IconComponent = stat.icon;
+              return (
+                <div
+                  key={stat.label}
+                  className="bg-white/10 backdrop-blur-lg rounded-2xl p-8 border border-white/20 hover:border-white/40 transition-all duration-300 transform hover:scale-105 text-center group"
+                  style={{ animationDelay: `${index * 0.1}s` }}
+                >
+                  <div className="flex justify-center mb-4">
+                    <IconComponent className={`w-8 h-8 bg-gradient-to-r ${stat.color} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`} />
+                  </div>
+                  <div className={`text-3xl md:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300`}>
+                    {stat.value}
+                  </div>
+                  <p className="text-gray-300 mt-4 group-hover:text-white transition-colors duration-300">
+                    {stat.label}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Skills Progress */}

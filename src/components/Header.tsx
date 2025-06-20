@@ -19,13 +19,13 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-white/10">
-      <div className="max-w-6xl mx-auto px-6 py-4">
+    <header className="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 shadow-lg">
+      <div className="max-w-4xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Logo/Name */}
           <Link 
             to="/" 
-            className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            className="text-2xl font-bold text-white hover:scale-105 transition-transform duration-300"
           >
             Alex
           </Link>
@@ -36,15 +36,15 @@ const Header = () => {
               <Link
                 key={item.name}
                 to={item.path}
-                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-purple-300 ${
+                className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-yellow-200 ${
                   isActive(item.path) 
-                    ? "text-purple-300" 
+                    ? "text-yellow-200 font-semibold" 
                     : "text-white"
                 }`}
               >
                 {item.name}
                 {isActive(item.path) && (
-                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-purple-500 to-cyan-500 animate-pulse"></div>
+                  <div className="absolute bottom-0 left-0 right-0 h-0.5 bg-yellow-300 animate-pulse"></div>
                 )}
               </Link>
             ))}
@@ -53,7 +53,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 text-white hover:text-purple-300 transition-colors duration-300"
+            className="md:hidden p-2 text-white hover:text-yellow-200 transition-colors duration-300"
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -61,16 +61,16 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden mt-4 py-4 border-t border-white/10 animate-fade-in">
+          <nav className="md:hidden mt-4 py-4 border-t border-white/20 animate-fade-in">
             <div className="flex flex-col space-y-4">
               {navItems.map((item) => (
                 <Link
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-purple-300 hover:translate-x-2 ${
+                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-yellow-200 hover:translate-x-2 ${
                     isActive(item.path) 
-                      ? "text-purple-300 bg-purple-500/10 rounded-lg" 
+                      ? "text-yellow-200 bg-white/10 rounded-lg font-semibold" 
                       : "text-white"
                   }`}
                 >
