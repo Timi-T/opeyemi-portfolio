@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
+    --background: 222.2 84% 4.9%;
     --foreground: 222.2 84% 4.9%;
 
     --card: 0 0% 100%;
@@ -116,7 +115,8 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -125,7 +125,8 @@
 }
 
 @keyframes glow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 0.5;
   }
   50% {
@@ -155,7 +156,12 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
@@ -163,6 +169,18 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+p {
+  font-size: large;
+}
+
+li {
+  font-size: large;
+}
+
+.inline-title {
+  font-size: x-large;
 }
 
 /* Custom glassmorphism effect */
@@ -198,4 +216,38 @@ html {
 .hover-lift:hover {
   transform: translateY(-8px);
   box-shadow: 0 20px 40px rgba(139, 92, 246, 0.3);
+}
+
+.custom-list {
+  list-style-type: disc; /* Use disc bullets */
+  padding-left: 1.5rem; /* Indent list */
+  margin: 0; /* Optional: remove default margin */
+}
+
+.custom-list li {
+  margin-bottom: 1rem; /* Space between list items */
+  margin-bottom: 16px;
+}
+
+.nest-1 {
+  margin-left: 1.5rem;
+}
+
+.nest-2 {
+  margin-left: 3rem;
+}
+
+.sublist {
+  list-style-type: circle;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.image-label {
+  width: 100%;
+  text-align: center;
+  font-weight: 700;
+  font-size: small;
+  margin-top: 12px;
+  margin-bottom: 12px;
 }

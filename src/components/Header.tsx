@@ -1,7 +1,7 @@
-
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { HomeIcon, Menu, X } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -19,17 +19,12 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-slate-800 shadow-lg">
-      <div className="w-1/2 mx-auto px-6 py-4">
-        <div className="flex items-center justify-between">
-          {/* Logo/Name */}
-          <Link 
-            to="/" 
-            className="text-2xl font-bold text-white hover:scale-105 transition-transform duration-300"
-          >
-            Alex
-          </Link>
-
+    <header className="bg-gray-900 flex items-center justify-between px-10 py-5">
+      <Link to={"/"}>
+        <HomeIcon className="text-cyan-600" size={30} />
+      </Link>
+      <div className="absolut top-5 right-5 bg-slate-800 shadow-lg w-max border border-blue-950 py-3 px-5 rounded-2xl">
+        <div className="flex items-center gap-5">
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
@@ -37,8 +32,8 @@ const Header = () => {
                 key={item.name}
                 to={item.path}
                 className={`relative px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-yellow-200 ${
-                  isActive(item.path) 
-                    ? "text-yellow-200 font-semibold" 
+                  isActive(item.path)
+                    ? "text-yellow-200 font-semibold"
                     : "text-white"
                 }`}
               >
@@ -55,7 +50,11 @@ const Header = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden p-2 text-white hover:text-yellow-200 transition-colors duration-300"
           >
-            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isMenuOpen ? (
+              <X className="w-6 h-6" />
+            ) : (
+              <Menu className="w-6 h-6" />
+            )}
           </button>
         </div>
 
@@ -69,8 +68,8 @@ const Header = () => {
                   to={item.path}
                   onClick={() => setIsMenuOpen(false)}
                   className={`px-3 py-2 text-sm font-medium transition-all duration-300 hover:text-yellow-200 hover:translate-x-2 ${
-                    isActive(item.path) 
-                      ? "text-yellow-200 bg-white/10 rounded-lg font-semibold" 
+                    isActive(item.path)
+                      ? "text-yellow-200 bg-white/10 rounded-lg font-semibold"
                       : "text-white"
                   }`}
                 >

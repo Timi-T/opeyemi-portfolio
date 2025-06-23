@@ -1,26 +1,27 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
-import { blogPosts } from "@/components/blog/posts";
+import { Link } from "react-router-dom";
+import { ArrowLeft, Calendar, Clock } from "lucide-react";
 
-const BlogPost = () => {
-  const { id } = useParams();
-  const navigate = useNavigate();
+type BlogPost = {
+  title: string;
+  content: string;
+  date: string;
+  readTime: string;
+  category: string;
+  gradient: string;
+};
 
-  // Mock blog data - in a real app, this would come from an API
-
-  const post = id ? blogPosts[id as keyof typeof blogPosts] : null;
-
+export const BlogPage = (post: BlogPost) => {
   if (!post) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-black flex items-center justify-center">
         <div className="text-center text-white">
           <h1 className="text-4xl font-bold mb-4">Blog Post Not Found</h1>
-          <button
-            onClick={() => navigate("/")}
+          <Link
+            to={"/"}
             className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold hover:scale-105 transform transition-all duration-300"
           >
             Return Home
-          </button>
+          </Link>
         </div>
       </div>
     );
@@ -34,13 +35,13 @@ const BlogPost = () => {
       >
         <div className="absolute inset-0 bg-black/40"></div>
         <div className="relative z-10 max-w-4xl mx-auto">
-          <button
-            onClick={() => navigate("/")}
+          <Link
+            to={"/"}
             className="mb-8 flex items-center space-x-2 text-white/80 hover:text-white transition-colors duration-300 group"
           >
             <ArrowLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" />
             <span>Back to Home</span>
-          </button>
+          </Link>
 
           <div className="mb-6">
             <span className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full text-sm text-white font-medium">
@@ -88,12 +89,12 @@ const BlogPost = () => {
               <p className="text-gray-300 mb-6">
                 Check out more of my blog posts and projects!
               </p>
-              <button
-                onClick={() => navigate("/")}
+              <Link
+                to={"/blogs"}
                 className="px-8 py-3 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full font-semibold text-white hover:scale-105 transform transition-all duration-300 shadow-lg hover:shadow-purple-500/25"
               >
                 Explore More Content
-              </button>
+              </Link>
             </div>
           </div>
         </div>
@@ -101,5 +102,3 @@ const BlogPost = () => {
     </div>
   );
 };
-
-export default BlogPost;
