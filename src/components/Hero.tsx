@@ -3,6 +3,7 @@ import { Button } from "./Button";
 import { HeroModel } from "./3D/HeroModel";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import TechStack from "./TechStack";
 
 export const Hero = () => {
   useGSAP(() => {
@@ -15,7 +16,7 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="h-screen relative overflow-hidden bg-gradient-to-br from-black via-cyan-950/50 to-black"
+      className="h-screen relative overflow-hidden bg-gradient-to-brfrom-blackvia-cyan-950/50to-black flex flex-col justify-between pb-10"
     >
       {/* Hero layout */}
       <div className="h-full flex items-center justify-between">
@@ -71,6 +72,8 @@ export const Hero = () => {
           </div>
         </figure>
       </div>
+
+      <TechStack />
     </section>
   );
 };

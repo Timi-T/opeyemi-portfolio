@@ -33,10 +33,10 @@ export const NavBar = () => {
           <ul>
             {navLinks.map(({ link, name }) => (
               <li key={name} className="group">
-                <a href={link}>
+                <Link to={link}>
                   <span>{name}</span>
                   <span className="underline" />
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

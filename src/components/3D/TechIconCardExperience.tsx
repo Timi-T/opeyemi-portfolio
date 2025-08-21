@@ -47,7 +47,7 @@ export const TechIconCardExperience = ({ model }) => {
         THREE.Group object contains all the objects (meshes, lights, etc)
         that make up the 3D model.
       */}
-      <Float speed={5.5} rotationIntensity={1} floatIntensity={0.9}>
+      <Float speed={10} rotationIntensity={1} floatIntensity={2}>
         <group scale={model.scale} rotation={model.rotation}>
           <primitive object={scene.scene} />
         </group>

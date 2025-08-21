@@ -7,7 +7,7 @@ export const AnimatedCounter = () => {
     <div id="counter" className="px-5 md:px-20 pt-32">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 xl:px-40">
         {counterItems.map((item) => (
-          <div className="bg-zinc-900/70 p-10 rounded-xl">
+          <div className="bg-neutral-900/100 p-10 rounded-xl">
             <Link
               key={item.label}
               to={item.href}
