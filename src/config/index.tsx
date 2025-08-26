@@ -1,11 +1,7 @@
 import {
   CircleCheckBig,
   Gem,
-  Lightbulb,
-  Package,
-  TelescopeIcon,
   TrendingUp,
-  User,
   Zap,
 } from "lucide-react";
 
@@ -82,36 +78,66 @@ export const experienceCards = [
     logoPath: "/images/blockops.png",
     title: "Frontend Developer",
     date: "January 2023 - Present",
+    duration: '3 years',
     responsibilities: [
-      "Built a powerful dashboard to simplify blockchain node deployment and management which helped land key partnerships with SSV, PayCrest, Starknet, and Obol.",
-      "Developed real-time chart panels with React + Redux, optimized API calls, and boosted dashboard speed by 30%.",
-      "Created a scalable TypeScript component library with Storybook, streamlining UI consistency and team velocity.",
-      "Worked closely with backend and DevOps to ensure smooth data integration and faster product iterations.",
+      "✨ Spearheaded development of the Blockops user dashboard, powering product features like Telescope 🔭 (node monitoring), Mission Control 🚀 (infrastructure orchestration), and Pulsar 🌌 (seamless indexer deployment). These contributions supported key partnerships with SSV, Obol, Starknet, Lido, Subquery, and Paycrest, directly driving adoption and credibility.",
+      "⚡ Reduced EVM chain onboarding time by ~70% (from 2–4 weeks down to 3–7 days) through streamlined integration flows, modularized components , and enhanced developer experience, driving faster time-to-market ⏩ for new EVM networks.",
+      "🧩 Modularized all major frontend features for clarity, composability, and scalability, laying the foundation for a smooth transition into a microfrontend architecture, ensuring long-term flexibility and maintainability 🛡️.",
+      "🤝 Collaborated closely with cross-functional teams (backend, product 📦, and design 🎨) to bring new features to market, bridging technical execution with deep user experience insights for Web3 developers, and strengthening product-market fit 🎯.",
+      /* "🔍 Initiated deep research into Grafana integration for Telescope tooling, enhancing observability 👀 and performance monitoring, for Telescope 🔭." */
     ],
     website: "https://blockops.network/",
+    tech: ["React", "TypeScript", "Next.js", "TailwindCSS", "Redux", "Jest", "Cypress"],
+    impact: [
+      "⚡ Cut integration time for EVM chains by 70% through reusable, modular components.",
+      "🛰️ Spearheaded MissionControl (node orchestration), Telescope (graph visualizations), and Pulsar (blockchain indexing).",
+      "🤝 Enabled adoption across major blockchain providers (Obol, SSV, Lido) via seamless integrations.",
+    ],
+
   },
   {
     imgPath: "/images/localhost.png",
-    logoPath: "/images/blockops.png",
+    logoPath: "/images/nautilus-logo.png",
     title: "Devops Engineer (Intern)",
-    date: "June 2020 - December 2023",
+    date: "July 2022 - December 2022",
+    duration: "6 months",
     responsibilities: [
-      "Built CI/CD pipelines with GitHub Actions, streamlining deployment in test environments.",
-      "Applied core DevOps practices to reduce friction in internal project delivery.",
-      "Used Grafana and logs to monitor systems and troubleshoot staging issues.",
+      "⚡ Implemented and optimized CI/CD pipelines using GitHub Actions, streamlining the development workflow and cutting release cycles by 50%+ 🚀.",
+      "🔧 Automated infrastructure provisioning and configuration management with Ansible and Terraform, improving application deployment efficiency by 40%+ ⏩.",
+      "🛠️ Assisted in diagnosing and resolving production incidents by analyzing logs and leveraging monitoring tools like Grafana, ensuring minimal downtime and reducing average resolution time to ~15 minutes 📉.",
     ],
-    website: "https://blockops.network/",
+    website: "https://www.nautilus.tech/",
+    tech: ["AWS", "Terraform", "Docker", "Kubernetes", "CI/CD", "Prometheus", "Grafana"],
+    impact: [
+      "⚙️ Automated CI/CD pipelines to improve deployment efficiency and reduce release times.",
+      "☁️ Managed containerized environments with Docker and Kubernetes for scalable apps.",
+      "📊 Optimized infrastructure monitoring and logging, improving system reliability.",
+    ],
+
+
   },
   {
     imgPath: "/images/alx-cert.png",
     logoPath: "/images/alx-logo.png",
     title: "Software Engineering Fellowship",
     date: "Aug 2021 - Sept 2022",
+    duration: "1 year",
     responsibilities: [
-      "Learnt core software engineering concepts across low- and high-level programming—C, Python, JavaScript, Bash scripting, operating systems, and networking.",
-      "Collaborated on real-world projects with students across Africa and completed the program as part of the top 10% of graduates in 2022, out of thousands who enrolled.",
+      "Gained strong foundations in software engineering, mastering C, Python, JavaScript, Bash, operating systems, and networking.",
+      "Built and deployed real-world projects in cross-functional teams with peers across Africa.",
+      "Graduated in the top 10% of thousands of students in 2022, demonstrating excellence and consistency.",
     ],
+
     website: "https://www.alxafrica.com/",
+    tech: ["C", "Linux", "Docker", "Javascript", "Python", "Express", "SQL", "Docker",],
+    impact: [
+      "💻 Mastered core software engineering across C, Python, JavaScript, Bash, OS, and networking.",
+      "🤝 Collaborated with peers across Africa on real-world engineering projects.",
+      "🏆 Graduated in the top 10% of thousands of enrolled students (2022).",
+      "🧠 Built strong foundations in problem-solving, algorithms, and system design.",
+    ],
+
+
   },
 ];
 
@@ -155,11 +181,11 @@ export const navLinks = [
   },
   {
     name: "Experience",
-    link: "#experience",
+    link: "/#experience",
   },
   {
     name: "Skills",
-    link: "#skills",
+    link: "/#skills",
   },
 ];
 

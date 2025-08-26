@@ -1,4 +1,5 @@
 import { navLinks } from "@/config";
+import { Home } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -25,18 +26,18 @@ export const NavBar = () => {
   return (
     <header className={`navbar ${scrolled ? "scrolled" : "not-scrolled"}`}>
       <div className="inner">
-        <a href="#hero" className="logo">
-          Timi-T
+        <a href="/#hero" className="logo">
+          <Home />
         </a>
 
         <nav className="desktop">
           <ul>
             {navLinks.map(({ link, name }) => (
               <li key={name} className="group">
-                <Link to={link}>
+                <a href={link}>
                   <span>{name}</span>
                   <span className="underline" />
-                </Link>
+                </a>
               </li>
             ))}
           </ul>

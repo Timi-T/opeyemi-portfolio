@@ -1,6 +1,7 @@
 import { Calendar, Clock, ArrowUpRight, Tag } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { MediumArticle } from "@/services/mediumService";
+import { motion } from "framer-motion";
 
 interface BlogCardProps {
   article: MediumArticle;
@@ -21,28 +22,32 @@ export const BlogCard = ({ article, index }: BlogCardProps) => {
   };
 
   return (
-    <article
-      className="group relative bg-zinc-900 rounded-xl p-6 
-                 transition-all duration-300 border border-gray-700 hover:border-cyan-700
-                 hover:shadow-hover cursor-pointer animate-fade-in transition-all ease-in-out duration-300"
-      style={{ animationDelay: `${index * 0.1}s` }}
+    <motion.article
       onClick={handleClick}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1, duration: 0.5 }}
+      whileHover={{ scale: 1.03, y: -4 }}
+      className="group relative cursor-pointer rounded-2xl p-6 
+                 bg-white/10 backdrop-blur-md 
+                 border border-cyan-500/30 hover:border-cyan-400 
+                 shadow-lg hover:shadow-cyan-500/20
+                 transition-all duration-300"
     >
-      {/* Hover glow effect */}
-      <div
-        className="absolute inset-0 rounded-xl bg-gradient-primary opacity-0 
-                      group-hover:opacity-10 transition-opacity duration-300"
-      />
+      {/* Glow overlay */}
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400/10 to-transparent opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none" />
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 flex flex-col h-full">
         {/* Header */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex-1">
             <h3
-              className="h-24 text-xl font-bold text-foreground mb-2 
-                         group-hover:text-primary transition-colors duration-300 
-                         line- clamp-2"
+              className="text-lg xl:text-xl font-semibold text-white mb-2 
+                         relative group-hover:text-cyan-300 transition-colors duration-300
+                         after:content-[''] after:absolute after:left-0 after:-bottom-1 
+                         after:w-0 after:h-0.5 after:bg-cyan-400 
+                         group-hover:after:w-full after:transition-all after:duration-500"
             >
               {article.title}
             </h3>
@@ -62,9 +67,9 @@ export const BlogCard = ({ article, index }: BlogCardProps) => {
           </div>
 
           <ArrowUpRight
-            className="h-5 w-5 text-muted-foreground 
-                                  group-hover:text-primary group-hover:scale-110 
-                                  transition-all duration-300"
+            className="h-6 w-6 text-gray-400 
+                       group-hover:text-cyan-400 group-hover:drop-shadow-[0_0_8px_rgba(34,211,238,0.7)]
+                       transform group-hover:scale-110 transition-all duration-300"
           />
         </div>
 
@@ -74,13 +79,12 @@ export const BlogCard = ({ article, index }: BlogCardProps) => {
         </p>
 
         {/* Footer */}
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mt-auto">
           <div className="flex flex-wrap gap-2">
             {article.categories.slice(0, 2).map((category, idx) => (
               <Badge
                 key={idx}
-                variant="secondary"
-                className="text-xs bg-gray-800 text-gray-300"
+                className="text-xs bg-cyan-500/20 text-cyan-200 border border-cyan-400/30 px-2 py-1"
               >
                 <Tag className="h-3 w-3 mr-1" />
                 {category}
@@ -88,30 +92,16 @@ export const BlogCard = ({ article, index }: BlogCardProps) => {
             ))}
             {article.categories.length > 2 && (
               <Badge
-                variant="secondary"
-                className="text-xs bg-gray-800 text-gray-300"
+                className="text-xs bg-cyan-500/20 text-cyan-200 border border-cyan-400/30 px-2 py-1"
               >
                 +{article.categories.length - 2}
               </Badge>
             )}
           </div>
 
-          <div className="text-xs text-muted-foreground">{article.creator}</div>
+          <div className="text-[11px] text-gray-400 italic">{article.creator}</div>
         </div>
       </div>
-
-      {/* Gradient border effect on hover */}
-      <div
-        className="absolute inset-0 rounded-xl bg-gradient-primary opacity-0 
-                      group-hover:opacity-20 transition-opacity duration-300 
-                      pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(135deg, transparent, hsl(204 100% 60% / 0.1), transparent)",
-          mask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          maskComposite: "xor",
-        }}
-      />
-    </article>
+    </motion.article>
   );
 };

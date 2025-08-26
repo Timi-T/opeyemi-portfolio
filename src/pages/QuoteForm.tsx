@@ -53,19 +53,9 @@ const QuoteForm = () => {
 
       if (error) throw error;
 
-      toast({
-        title: "Request submitted successfully!",
-        description: "We'll get back to you soon with your quote.",
-      });
-
       navigate("/success");
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast({
-        title: "Error",
-        description: "Failed to submit your request. Please try again.",
-        variant: "destructive",
-      });
     } finally {
       setIsSubmitting(false);
     }
@@ -102,6 +92,7 @@ const QuoteForm = () => {
                   </Label>
                   <Input
                     id="client_name"
+
                     required
                     value={formData.client_name}
                     onChange={(e) =>
@@ -183,6 +174,7 @@ const QuoteForm = () => {
                   </PopoverTrigger>
                   <PopoverContent className="w-auto p-0">
                     <Calendar
+                      className="bg-white"
                       mode="single"
                       selected={discussionDate}
                       onSelect={setDiscussionDate}

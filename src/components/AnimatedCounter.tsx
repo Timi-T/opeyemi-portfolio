@@ -4,14 +4,14 @@ import { Link } from "react-router-dom";
 
 export const AnimatedCounter = () => {
   return (
-    <div id="counter" className="px-5 md:px-20 pt-32">
+    <div id="counter" className="px-5 md:px-20 py-10 md:py-14 xl:py-32">
       <div className="mx-auto grid grid-cols-1 md:grid-cols-3 xl:grid-cols-3 gap-8 xl:px-40">
         {counterItems.map((item) => (
-          <div className="bg-neutral-900/100 p-10 rounded-xl">
+          <div className="bg-white/80 p-10 rounded-xl">
             <Link
               key={item.label}
               to={item.href}
-              className="counter-number text-white text-3xl md:text-5xl xl:text-6xl font-bold mb-0"
+              className="w-full h-full counter-number text-black text-3xl md:text-5xl xl:text-6xl font-bold mb-0"
             >
               <CountUp
                 scrollSpyDelay={3}
@@ -21,7 +21,7 @@ export const AnimatedCounter = () => {
                 prefix={item.prefix}
               />
             </Link>
-            <div>{item.label}</div>
+            <div className="text-black">{item.label}</div>
           </div>
         ))}
       </div>

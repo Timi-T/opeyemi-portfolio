@@ -1,6 +1,5 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { TitleHeader } from "./TitleHeader";
 import { techStackIcons } from "@/config";
 import TechIconCardExperience from "./3D/TechIconCardExperience";
 
@@ -34,15 +33,15 @@ const TechStack = () => {
   });
 
   return (
-    <div id="skills" className="flex-center section-padding">
+    <div id="skills" className="flex-center py-10 h-max">
       <div className="w-full h-full md:px-10 px-5">
         {/* <TitleHeader
           title="How I Can Contribute & My Key Skills"
           sub="🤝 What I Bring to the Table"
         /> */}
-        <div className="flex flex-wrap items-center justify-center gap-10">
+        <div className="flex flex-wrap items-center justify-center gap-5 lg:gap-10">
           {techStackIcons.map((techStackIcon) => (
-            <div className="w-16 h-16">
+            <div className="w-14 h-14">
               <TechIconCardExperience model={techStackIcon} />
             </div>
           ))}

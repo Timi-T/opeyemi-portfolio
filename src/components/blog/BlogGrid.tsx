@@ -2,19 +2,18 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
-  Loader2,
   Search,
   ExternalLink,
   BookOpen,
   ArrowUpRight,
 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
 import { MediumArticle, MediumService } from "@/services/mediumService";
 import { BlogCard } from "./BlogCard";
 import { Canvas } from "@react-three/fiber";
 import { Spinner } from "../Spinner";
 import { TitleHeader } from "../TitleHeader";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 interface BlogGridProps {
   mediumUsername?: string;
@@ -29,9 +28,7 @@ export const BlogGrid = ({
   const [filteredArticles, setFilteredArticles] = useState<MediumArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
-  const [currentUsername, setCurrentUsername] = useState(mediumUsername);
-  const [inputUsername, setInputUsername] = useState(mediumUsername);
-  const { toast } = useToast();
+  const [currentUsername] = useState(mediumUsername);
 
   useEffect(() => {
     loadArticles();
@@ -69,16 +66,10 @@ export const BlogGrid = ({
     }
   };
 
-  const handleUsernameUpdate = () => {
-    if (inputUsername !== currentUsername) {
-      setCurrentUsername(inputUsername);
-    }
-  };
-
   if (loading) {
     return (
-      <div className="w-screen h-screen fixed top-0 left-0 z-[999999] bg-black flex items-center justify-center">
-        <div className="w-[70px] h-[70px]">
+      <div className={clsx("flex items-center justify-center", viewFullPage ? 'w-screen h-screen fixed top-0 left-0 z-[999999] bg-black' : '')}>
+        <div className={clsx(viewFullPage ? '' : 'hidden', "w-[70px] h-[70px]")}>
           <Canvas camera={{ position: [0, 0, 5] }}>
             <ambientLight intensity={0.8} />
             <pointLight position={[10, 10, 10]} />
@@ -91,13 +82,13 @@ export const BlogGrid = ({
   }
 
   return (
-    <div className="space-y-8">
+    <div className={clsx("space-y-8", viewFullPage ? '' : 'py-8 xl:py-16')}>
       <div className="w-full flex flex-col gap-2 justify-center items-center">
-        <TitleHeader title="Latest Articles" sub="✍️ Blog Articles" />
+        <TitleHeader title="✍️ Latest Articles" sub="✍️ Blog Articles" className={viewFullPage ? '' : 'text-neutral-200 mb-16'} />
         <Link
           to="https://medium.com/@ogunbodetimi"
           target="_blank"
-          className="text-xs flex items-center gap-2 font-bold text-foreground self-end"
+          className="text-xs flex items-center gap-2 font-bold text-neutral-200 self-end"
         >
           View all
           <ArrowUpRight
@@ -111,14 +102,6 @@ export const BlogGrid = ({
       {viewFullPage ? (
         <>
           <div className="text-center space-y-4">
-            {/* <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full 
-                        bg-primary/10 border border-primary/20 text-primary"
-        >
-          <BookOpen className="h-4 w-4" />
-          <span className="text-sm font-medium">Blog Articles</span>
-        </div> */}
-
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Explore my thoughts on web development, technology, and software
               engineering.
@@ -127,23 +110,6 @@ export const BlogGrid = ({
 
           {/* Controls */}
           <div className="flex flex-col sm:flex-row gap-4 justify-between items-center">
-            {/* <div className="flex items-center gap-2 w-full sm:w-auto">
-          <Input
-            type="text"
-            placeholder="Enter Medium username..."
-            value={inputUsername}
-            onChange={(e) => setInputUsername(e.target.value)}
-            className="w-full sm:w-64"
-          />
-          <Button
-            onClick={handleUsernameUpdate}
-            disabled={!inputUsername || inputUsername === currentUsername}
-            size="sm"
-          >
-            Load
-          </Button>
-        </div> */}
-
             <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input

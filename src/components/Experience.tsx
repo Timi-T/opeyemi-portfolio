@@ -2,9 +2,9 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { experienceCards } from "@/config";
-import { GlowCard } from "./GlowCard";
 import { TitleHeader } from "./TitleHeader";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -92,62 +92,76 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="flex-center md:py-40 pt-20 section-padding xl:px-0 bg-black"
+      className="flex-center py-20 md:py-32 pt-20 xl:px-0 bg-cyan-50 text-neutral-950"
     >
-      <div className="w-full h-full md:px-20 px-5">
+      <div className="w-full h-full md:px-20 px-3">
         <TitleHeader
-          title="Professional Work Experience"
+          title="💼 Professional Work Experience"
           sub="💼  My Career Overview"
+          className="text-neutral-950"
         />
-        <div className="mt-32 relative">
-          <div className="relative z-50 xl:space-y-32 space-y-10">
+        <div className="mt-20 md:mt-32 relative">
+          <div className="relative z-50 xl:space-y-32 space-y-8">
             {experienceCards.map((card, idx) => (
               <div key={card.title} className="exp-card-wrapper">
-                <div className="xl:w-2/6">
-                  {/* <GlowCard card={card} index={idx}>
-                    <div>
-                      <img src={card.imgPath} alt="exp-img" />
-                    </div>
-                  </GlowCard> */}
-                  <div className="hover:scale-[1.05] hover:translate-x-5 hover:-translate-y-3 z-[99999] transition-all ease-in-out duration-300">
-                    <Link to={card.website} className="">
-                      <img
-                        src={card.imgPath}
-                        alt="exp-img"
-                        className="rounded-2xl card-border p-4"
-                      />
-                    </Link>
-                  </div>
-                </div>
-                <div className="xl:w-4/6">
+                <div className="xl:w-3/6">
                   <div className="flex items-start">
                     <div className="timeline-wrapper">
                       <div className="timeline" />
                       <div className="gradient-line w-1 h-full" />
                     </div>
                     <div className="expText flex xl:gap-20 md:gap-10 gap-5 relative z-20">
-                      <div className="timeline-logo">
+                      <div className="timeline-logo shadow-xl border">
                         <Link to={card.website}>
-                          <img src={card.logoPath} alt="logo" className="p-4" />
+                          <img src={card.logoPath} alt="logo" className="p-3 rounded-full" />
                         </Link>
                       </div>
                       <div>
-                        <h1 className="font-semibold text-3xl">{card.title}</h1>
-                        <p className="my-5 text-white-50">
+                        <h1 className="font-semibold text-xl md:text-3xl">{card.title}</h1>
+                        <p className="my-1 md:my-5 text-white-50">
                           🗓️&nbsp;{card.date}
                         </p>
-                        <p className="text-[#839CB5] italic">
+                        <p className="text-cyan-800 italic">
                           Responsibilities
                         </p>
                         <ul className="list-disc ms-5 mt-5 flex flex-col gap-5 text-white-50">
                           {card.responsibilities.map(
                             (responsibility, index) => (
-                              <li key={index} className="text-lg">
+                              <li key={index} className="text-sm md:text-lg">
                                 {responsibility}
                               </li>
                             )
                           )}
                         </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="hidden xl:flex xl:w-1/3 flex flex-col gap-6 justify-center">
+                  {/* Key Achievements */}
+                  <div className={clsx("backdrop-blur-lg p-7 2xl:p-10 bg-gradient-to-br from-black via-cyan-950 to-black rounded-2xl shadow-sm border text-neutral-50")}>
+
+                    <h3 className="text-base font-semibold text-neutral-50">Duration</h3>
+                    <p>{card.duration}</p>
+                    <h3 className="text-base mt-6 font-semibold text-neutral-50 mb-2">Key Achievements</h3>
+                    <ul className="text-sm space-y-2">
+                      {
+                        card.impact.map((impact) => {
+                          return <li>{impact}</li>
+                        })
+                      }
+                    </ul>
+
+                    {/* Tech Stack */}
+                    <div className="mt-12">
+                      <h3 className="text-sm font-semibold text-neutral-50 mb-2">Tech Stack</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {card.tech.map((tech) => (
+                          <span key={tech} className="px-3 py-1 text-xs bg-neutral-100 text-neutral-700 rounded-full shadow-sm border">
+                            {tech}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>

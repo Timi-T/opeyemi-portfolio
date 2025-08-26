@@ -17,9 +17,8 @@ export const HeroModel = () => {
         minDistance={5}
         minPolarAngle={Math.PI / 5}
         maxPolarAngle={Math.PI / 2}
-
-        /* autoRotate
-        autoRotateSpeed={0.3} */
+        autoRotate
+        autoRotateSpeed={-0.3}
       />
 
       <SetupModel scale={isMobile ? 1 : 3.5} />

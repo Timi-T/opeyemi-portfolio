@@ -4,6 +4,7 @@ import { HeroModel } from "./3D/HeroModel";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import TechStack from "./TechStack";
+import { Link } from "react-router-dom";
 
 export const Hero = () => {
   useGSAP(() => {
@@ -16,16 +17,16 @@ export const Hero = () => {
   return (
     <section
       id="hero"
-      className="h-screen relative overflow-hidden bg-gradient-to-brfrom-blackvia-cyan-950/50to-black flex flex-col justify-between pb-10"
+      className="h-screen w-full relative overflow-hidden flex flex-col justify-center pb-10 bg-white text-neutral-950"
     >
       {/* Hero layout */}
       <div className="h-full flex items-center justify-between">
         {/* Left side */}
         <div className="h-full">
-          <header className="h-full flex flex-col justify-center w-screen md:w-full px-5 md:px-20">
-            <div className="flex flex-col gap-6">
-              <div className="text-3xl md:text-5xl xl:text-6xl font-medium">
-                <h2 className="overflow-hidden flex gap-2 inline-block py-1 title-1">
+          <header className="h-full flex flex-col justify-center w-screen xl:w-auto w-full px-5 md:px-20">
+            <div className="flex flex-col gap-6 items-center xl:items-start pt-14 xl:pt-0">
+              <div className="text-3xl md:text-5xl xl:text-6xl font-medium flex flex-col items-center xl:items-start pt-14 xl:pt-0">
+                <h2 className="overflow-hidden flex gap-2 inline-block py-1 title-1 text-center xl:text-start whitespace-nowrap">
                   Delivering
                   <span className="text-slide h-9 md:h-12 xl:h-16">
                     <span className="wrapper">
@@ -45,28 +46,28 @@ export const Hero = () => {
                     </span>
                   </span>
                 </h2>
-                <h2 className="py-1 title-2">frontend solutions</h2>
-                <h2 className="py-1 title-3">engineered for complexity</h2>
+                <h2 className="py-1 title-2 text-center xl:text-start">frontend solutions</h2>
+                <h2 className="py-1 title-3 text-center xl:text-start">engineered for complexity</h2>
               </div>
-              <p className="text-neutral-300 text-lg">
+              <p className="text-neutral-300 text-lg my-4 xl:my-0 text-center xl:text-start">
                 Creating pixel perfect & seamless user interfaces on the web{" "}
                 <span className="text-2xl">🎨</span>
               </p>
 
-              <Button
+              <Link to={'/blog'}><Button
                 type="button"
                 className="bg-gradient-to-br from-white via-cyan-300 to-purple-300 w-max h-10 md:h-14 px-20 rounded-xl text-black xl:text-lg font-medium"
               >
-                View blog
-              </Button>
+                View articles
+              </Button></Link>
             </div>
           </header>
         </div>
 
         {/* right side */}
-        <figure className="w-full xl:flex-1">
-          <div className="absolute w-[70%] h-full xl:min-h-[50vh] top-1/2 -translate-y-1/2 flex items-centerjustify-center">
-            <div className="mt-40 w-full h-full pr-96">
+        <figure className="w-screen hidden xl:flex">
+          <div className="w-full absolute xl:w-[70%] h-full xl:min-h-[50vh] top-1/2 -translate-y-1/2 flex items-center justify-center">
+            <div className="mt-40 w-full h-full pr-[450px] 2xl:pr-96">
               <HeroModel />
             </div>
           </div>

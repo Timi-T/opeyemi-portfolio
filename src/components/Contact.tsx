@@ -1,116 +1,195 @@
 import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 import { TitleHeader } from "./TitleHeader";
-import { ContactExperience } from "./3D/ContactExperience";
+import { useForm } from "@formspree/react";
+import { toast } from "@/hooks/use-toast";
 
 const Contact = () => {
   const formRef = useRef(null);
-  const [loading, setLoading] = useState(false);
+  const [_state, handleFormSubmit] = useForm("mpwlvwda");
+  const [isLoading, setIsLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
     message: "",
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+  const [errors, setErrors] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const validateField = (name: string, value: string) => {
+    let error = "";
+
+    if (name === "name" && !value.trim()) {
+      error = "Full name is required";
+    }
+
+    if (name === "email") {
+      if (!value.trim()) {
+        error = "Email is required";
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) {
+        error = "Invalid email address";
+      }
+    }
+
+    if (name === "message" && !value.trim()) {
+      error = "Message is required";
+    }
+
+    setErrors((prev) => ({ ...prev, [name]: error }));
+    return error === "";
   };
 
-  const handleSubmit = async (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+    validateField(e.target.name, e.target.value);
+  };
+
+  const handleBlur = (
+    e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    validateField(e.target.name, e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true); // Show loading state
 
-    try {
-      await emailjs.sendForm(
-        import.meta.env.VITE_APP_EMAILJS_SERVICE_ID,
-        import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID,
-        formRef.current,
-        import.meta.env.VITE_APP_EMAILJS_PUBLIC_KEY
-      );
+    const isValid =
+      validateField("name", form.name) &&
+      validateField("email", form.email) &&
+      validateField("message", form.message);
 
-      // Reset form and stop loading
+    if (isValid) {
+      setIsLoading(true);
+      await handleFormSubmit(e);
+
+      toast({
+        description:
+          "We have recieved your message and would reach out to you shortly.",
+        title: "Message Sent!",
+      });
       setForm({ name: "", email: "", message: "" });
-    } catch (error) {
-      console.error("EmailJS Error:", error); // Optional: show toast
-    } finally {
-      setLoading(false); // Always stop loading, even on error
+      setErrors({ name: "", email: "", message: "" });
+      setIsLoading(false);
     }
   };
 
   return (
-    <section id="contact" className="flex-center section-padding">
-      <div className="w-full h-full md:px-10 px-5">
+    <section id="contact" className="flex-center my-16 sm:my-24 md:my-32 px-4 sm:px-6">
+      <div className="w-full h-full md:px-8 xl:px-10">
         <TitleHeader
-          title="Get in Touch – Let’s Connect"
+          title="💬 Get in Touch – Let’s Connect"
           sub="💬 Have questions or ideas? Let’s talk! 🚀"
         />
-        <div className="w-full mt-16 flex justify-center">
-          <div className="w-full md:w-4/5 xl:w-2/5">
-            <div className="flex-center card-border rounded-xl p-10">
+
+        <div className="w-full my-12 md:my-16 flex justify-center">
+          <div className="w-full sm:w-5/6 md:w-4/5 xl:w-2/5">
+            {/* Glassy Card */}
+            <div className="relative rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 xl:p-10 bg-zinc-900/80 backdrop-blur-xl border border-cyan-500/20 shadow-lg hover:shadow-cyan-500/30 transition-shadow duration-300">
+              {/* Cyan glow overlay */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-cyan-400/10 via-transparent to-cyan-400/10 opacity-0 hover:opacity-100 blur-2xl transition-opacity" />
+
               <form
                 ref={formRef}
                 onSubmit={handleSubmit}
-                className="w-full flex flex-col gap-7"
+                className="relative z-10 w-full flex flex-col gap-6 sm:gap-7 md:gap-8"
               >
-                <div>
-                  <label htmlFor="name">Your name</label>
+                {/* Name */}
+                <div className="relative">
                   <input
                     type="text"
                     id="name"
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    placeholder="What’s your good name?"
+                    onBlur={handleBlur}
                     required
+                    placeholder=" "
+                    className="peer w-full rounded-xl sm:rounded-xl border border-gray-700 bg-transparent px-3 sm:px-4 pt-6 sm:pt-8 pb-2 text-sm sm:text-base text-gray-100 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all"
                   />
+                  <label
+                    htmlFor="name"
+                    className="absolute left-3 sm:left-4 top-1 sm:top-2 text-gray-400 text-xs sm:text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-1 sm:peer-focus:top-2 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-cyan-300"
+                  >
+                    Your Name
+                  </label>
+                  {errors.name && (
+                    <span className="text-red-500 text-xs mt-2">
+                      {errors.name}
+                    </span>
+                  )}
                 </div>
 
-                <div>
-                  <label htmlFor="email">Your Email</label>
+                {/* Email */}
+                <div className="relative">
                   <input
                     type="email"
                     id="email"
                     name="email"
                     value={form.email}
                     onChange={handleChange}
-                    placeholder="What’s your email address?"
+                    onBlur={handleBlur}
                     required
+                    placeholder=" "
+                    className="peer w-full rounded-xl sm:rounded-xl border border-gray-700 bg-transparent px-3 sm:px-4 pt-6 sm:pt-8 pb-2 text-sm sm:text-base text-gray-100 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all"
                   />
+                  <label
+                    htmlFor="email"
+                    className="absolute left-3 sm:left-4 top-1 sm:top-2 text-gray-400 text-xs sm:text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-1 sm:peer-focus:top-2 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-cyan-300"
+                  >
+                    Your Email
+                  </label>
+                  {errors.email && (
+                    <span className="text-red-500 text-xs mt-2">
+                      {errors.email}
+                    </span>
+                  )}
                 </div>
 
-                <div>
-                  <label htmlFor="message">Your Message</label>
+                {/* Message */}
+                <div className="relative">
                   <textarea
                     id="message"
                     name="message"
                     value={form.message}
                     onChange={handleChange}
-                    placeholder="How can I help you?"
-                    rows={5}
+                    onBlur={handleBlur}
                     required
+                    rows={5}
+                    placeholder=""
+                    className="peer w-full rounded-xl sm:rounded-xl border border-gray-700 bg-transparent px-3 sm:px-4 pt-6 sm:pt-8 pb-2 text-sm sm:text-base text-gray-100 focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all resize-none"
                   />
+                  <label
+                    htmlFor="message"
+                    className="absolute left-3 sm:left-4 top-1 sm:top-2 text-gray-400 text-xs sm:text-sm transition-all peer-placeholder-shown:top-3 peer-placeholder-shown:text-sm sm:peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-500 peer-focus:top-1 sm:peer-focus:top-2 peer-focus:text-xs sm:peer-focus:text-sm peer-focus:text-cyan-300"
+                  >
+                    Your Message
+                  </label>
+                  {errors.message && (
+                    <span className="text-red-500 text-xs mt-2">
+                      {errors.message}
+                    </span>
+                  )}
                 </div>
 
-                <button type="submit">
-                  <div className="cta-button group">
-                    <div className="bg-circle" />
-                    <p className="text">
-                      {loading ? "Sending..." : "Send Message"}
-                    </p>
-                    <div className="arrow-wrapper">
-                      <img src="/images/arrow-down.svg" alt="arrow" />
-                    </div>
-                  </div>
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className="relative overflow-hidden rounded-xl sm:rounded-xl bg-gradient-to-r from-cyan-400 to-blue-500 px-5 sm:px-6 py-2.5 sm:py-3 text-sm sm:text-base font-semibold text-white shadow-md transition-transform duration-300 hover:scale-105 hover:shadow-cyan-500/40 disabled:opacity-70"
+                >
+                  <span className="relative z-10">
+                    {isLoading ? "Sending..." : "Send Message"}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-300 via-cyan-500 to-blue-500 opacity-0 group-hover:opacity-100 blur-xl transition-opacity" />
                 </button>
               </form>
             </div>
           </div>
-          {/* <div className="xl:col-span-7 min-h-96">
-            <div className="bg-[#cd7c2e] w-full h-full hover:cursor-grab rounded-3xl overflow-hidden">
-              <ContactExperience />
-            </div>
-          </div> */}
         </div>
       </div>
     </section>
