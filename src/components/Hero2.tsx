@@ -34,7 +34,7 @@ export const Hero2 = ({
       </div>
 
       {/* Right side content */}
-      <div className="relative flex flex-1 items-end xl:items-center justify-center bg-red-500 px-4 sm:px-6 md:px-8 2xl:px-12 pb-12 xl:pb-0 bg-black/60 xl:bg-transparent">
+      <div className="relative flex flex-1 items-end xl:items-center justify-center px-4 sm:px-6 md:px-8 2xl:px-12 pb-12 xl:pb-0 bg-black/60 xl:bg-transparent">
         <NavBar2 />
         <motion.div
           initial={{ opacity: 0, y: 24 }}
