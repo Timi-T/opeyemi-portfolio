@@ -1,6 +1,7 @@
 import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { BlogSection } from "@/components/blog/BlogSection";
 import Contact from "@/components/Contact";
+import { CVFloatingButton } from "@/components/CVButton";
 import Experience from "@/components/Experience";
 import { Footer } from "@/components/Footer";
 import { Hero2 } from "@/components/Hero2";
@@ -17,6 +18,7 @@ const Index = () => {
       <BlogSection mediumUsername="ogunbodetimi" />
       <Contact />
       <Footer />
+      <CVFloatingButton />
     </div>
   );
 };

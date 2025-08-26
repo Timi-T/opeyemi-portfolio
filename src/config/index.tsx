@@ -129,7 +129,7 @@ export const experienceCards = [
     ],
 
     website: "https://www.alxafrica.com/",
-    tech: ["C", "Linux", "Docker", "Javascript", "Python", "Express", "SQL", "Docker",],
+    tech: ["C", "Linux", "Docker", "Javascript", "Python", "Express", "SQL",],
     impact: [
       "💻 Mastered core software engineering across C, Python, JavaScript, Bash, OS, and networking.",
       "🤝 Collaborated with peers across Africa on real-world engineering projects.",
