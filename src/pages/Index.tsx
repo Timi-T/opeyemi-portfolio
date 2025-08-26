@@ -17,7 +17,6 @@ const Index = () => {
       <BlogSection mediumUsername="ogunbodetimi" />
       <Contact />
       <Footer />
-
     </div>
   );
 };
